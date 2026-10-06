@@ -13,7 +13,7 @@
             @foreach (config('site.products') as $key => $product)
                 <div class="col-lg-4 col-md-6">
                     <div class="service-item style-4 h-100 wow fadeInUp" data-product="{{ $key }}" data-wow-delay=".{{ $loop->iteration }}s">
-                        <div class="service-icon"><i class="{{ $product['icon'] }}" aria-hidden="true"></i></div>
+                        <div class="service-icon product-logo"><img src="{{ asset($product['logo']) }}" alt="{{ $product['name'] }}" width="100" height="100" loading="lazy"></div>
                         <div class="service-content">
                             <h4 class="title"><a href="{{ $product['url'] }}" target="_blank" rel="noopener noreferrer">{{ $product['name'] }}</a></h4>
                             <p class="desc">{{ __('site.product_'.$key.'_description') }}</p>

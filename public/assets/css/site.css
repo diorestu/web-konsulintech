@@ -84,3 +84,14 @@
 
 #products .service-item[data-product="paperwork"]:hover { background-color: #023e8a; }
 #products .service-item[data-product="mava"]:hover { background-color: #1e88e5; }
+#products .service-icon.product-logo {
+    background: transparent;
+    border: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+#products .product-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
