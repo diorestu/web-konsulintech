@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Portfolio;
 use App\Support\WhatsApp;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\View\View;
 
 class WebsiteController extends Controller
 {
-    public function page(string $locale, string $page = 'home'): View
+    public function page(Request $request, string $locale, string $page = 'home'): View
     {
         App::setLocale($locale);
 
@@ -18,6 +19,18 @@ class WebsiteController extends Controller
             'page' => $page,
             'locale' => $locale,
             'whatsappUrl' => WhatsApp::url(),
+            'portfolios' => $page === 'portfolio' ? Portfolio::published()->when($request->filled('q'), fn ($query) => $query->where(fn ($query) => $query->where('title', 'like', '%'.mb_substr((string) $request->query('q'), 0, 100).'%')->orWhere('category', 'like', '%'.mb_substr((string) $request->query('q'), 0, 100).'%')))->orderByDesc('publish_at')->orderByDesc('id')->paginate(9)->withQueryString() : null,
+        ]);
+    }
+
+    public function portfolio(string $locale, string $portfolio): View
+    {
+        App::setLocale($locale);
+        $portfolioEntry = Portfolio::published()->findOrFail($portfolio);
+
+        return view('pages.portfolio-detail', [
+            'page' => 'portfolio', 'locale' => $locale,
+            'whatsappUrl' => WhatsApp::url(), 'portfolioEntry' => $portfolioEntry,
         ]);
     }
 

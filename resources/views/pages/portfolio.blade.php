@@ -27,122 +27,27 @@
 </section>
 
 
-<section class="tj-project-section section-gap" data-portfolio-projects data-no-results="{{ __('site.no_projects') }}">
+<section class="tj-project-section section-gap">
 <div class="container">
 <div class="row row-gap-4">
+@forelse($portfolios as $portfolio)
 <div class="col-xl-4 col-md-6">
 <div class="project-item wow fadeInUp" data-wow-delay=".1s">
-<div class="project-img">
-<img alt="" src="{{ asset('assets/images/project/project-6.webp') }}"/>
-</div>
+<div class="project-img"><img src="{{ asset('storage/'.$portfolio->thumbnail) }}" alt="{{ $portfolio->title }}" loading="lazy" style="aspect-ratio: 4 / 3; object-fit: cover;"></div>
 <div class="project-content">
-<span class="categories"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.business_2') }}</a></span>
+<span class="categories">{{ $portfolio->category }}</span>
 <div class="project-text">
-<h4 class="title"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.event_management_platform') }}</a></h4>
-<a class="project-btn" href="{{ route('site.contact', ['locale' => $locale]) }}">
-<i class="tji-arrow-right-big"></i>
-</a>
+<h4 class="title"><a href="{{ route('site.portfolio.show', ['locale' => $locale, 'portfolio' => $portfolio]) }}">{{ $portfolio->title }}</a></h4>
+<a class="project-btn" href="{{ route('site.portfolio.show', ['locale' => $locale, 'portfolio' => $portfolio]) }}" aria-label="{{ $portfolio->title }}"><i class="tji-arrow-right-big"></i></a>
 </div>
 </div>
 </div>
 </div>
-<div class="col-xl-4 col-md-6">
-<div class="project-item wow fadeInUp" data-wow-delay=".3s">
-<div class="project-img">
-<img alt="" src="{{ asset('assets/images/project/project-7.webp') }}"/>
+@empty
+<div class="col-12"><p class="text-center">{{ request('q') ? __('site.no_projects') : __('site.portfolio_empty') }}</p></div>
+@endforelse
 </div>
-<div class="project-content">
-<span class="categories"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.business_2') }}</a></span>
-<div class="project-text">
-<h4 class="title"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.rebranding_strategy_for_a_growing_business') }}</a></h4>
-<a class="project-btn" href="{{ route('site.contact', ['locale' => $locale]) }}">
-<i class="tji-arrow-right-big"></i>
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xl-4 col-md-6">
-<div class="project-item wow fadeInUp" data-wow-delay=".5s">
-<div class="project-img">
-<img alt="" src="{{ asset('assets/images/project/project-8.webp') }}"/>
-</div>
-<div class="project-content">
-<span class="categories"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.business_2') }}</a></span>
-<div class="project-text">
-<h4 class="title"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.interactive_learning_platform') }}</a></h4>
-<a class="project-btn" href="{{ route('site.contact', ['locale' => $locale]) }}">
-<i class="tji-arrow-right-big"></i>
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xl-4 col-md-6">
-<div class="project-item wow fadeInUp" data-wow-delay=".7s">
-<div class="project-img">
-<img alt="" src="{{ asset('assets/images/project/project-9.webp') }}"/>
-</div>
-<div class="project-content">
-<span class="categories"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.business_2') }}</a></span>
-<div class="project-text">
-<h4 class="title"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.environmental_impact_dashboard') }}</a></h4>
-<a class="project-btn" href="{{ route('site.contact', ['locale' => $locale]) }}">
-<i class="tji-arrow-right-big"></i>
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xl-4 col-md-6">
-<div class="project-item wow fadeInUp" data-wow-delay=".9s">
-<div class="project-img">
-<img alt="" src="{{ asset('assets/images/project/project-8.webp') }}"/>
-</div>
-<div class="project-content">
-<span class="categories"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.business_2') }}</a></span>
-<div class="project-text">
-<h4 class="title"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.interactive_learning_platform') }}</a></h4>
-<a class="project-btn" href="{{ route('site.contact', ['locale' => $locale]) }}">
-<i class="tji-arrow-right-big"></i>
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xl-4 col-md-6">
-<div class="project-item wow fadeInUp" data-wow-delay="1s">
-<div class="project-img">
-<img alt="" src="{{ asset('assets/images/project/project-7.webp') }}"/>
-</div>
-<div class="project-content">
-<span class="categories"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.business_2') }}</a></span>
-<div class="project-text">
-<h4 class="title"><a href="{{ route('site.contact', ['locale' => $locale]) }}">{{ __('site.rebranding_strategy_for_a_growing_business') }}</a></h4>
-<a class="project-btn" href="{{ route('site.contact', ['locale' => $locale]) }}">
-<i class="tji-arrow-right-big"></i>
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="tj-pagination d-flex justify-content-center">
-<ul>
-<li>
-<span aria-current="page" class="page-numbers current">1</span>
-</li>
-<li>
-<a class="page-numbers" href="#">2</a>
-</li>
-<li>
-<a class="page-numbers" href="#">3</a>
-</li>
-<li>
-<a class="next page-numbers" href="#"><i class="tji-arrow-right-long"></i></a>
-</li>
-</ul>
-</div>
+<div class="mt-5">{{ $portfolios->links('pagination::bootstrap-5') }}</div>
 </div>
 </section>
 

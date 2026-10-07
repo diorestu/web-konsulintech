@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'portfolio_empty' => 'Portfolio entries will be available once published.',
     'back_to_top' => 'Back to top',
     'loading' => 'Loading...',
     'developing_personalize_our_customer_journeys_to_increase_satisfaction' => 'Konsulin Tech helps you build digital systems and address legal and business needs. Explore HUMI HRIS, Paperwork, and Mava POS too.',

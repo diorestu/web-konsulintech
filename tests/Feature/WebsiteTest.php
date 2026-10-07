@@ -2,10 +2,13 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class WebsiteTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_five_pages_render_in_both_languages_with_localized_navigation(): void
     {
         foreach (['id' => 'Tentang Kami', 'en' => 'About Us'] as $locale => $label) {

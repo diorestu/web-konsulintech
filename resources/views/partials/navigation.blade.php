@@ -5,10 +5,10 @@
         </li>
     @endforeach
     <li class="has-dropdown">
-        <a href="{{ route('site.'.$page, ['locale' => $locale === 'id' ? 'en' : 'id']) }}" aria-label="{{ __('site.switch_language') }}">{{ strtoupper($locale) }}</a>
+        <a href="{{ isset($portfolioEntry) ? route('site.portfolio.show', ['locale' => ($locale === 'id' ? 'en' : 'id'), 'portfolio' => $portfolioEntry]) : route('site.'.$page, ['locale' => $locale === 'id' ? 'en' : 'id']) }}" aria-label="{{ __('site.switch_language') }}">{{ strtoupper($locale) }}</a>
         <ul class="sub-menu">
             @foreach (['id' => 'Indonesia', 'en' => 'English'] as $language => $label)
-                <li><a href="{{ route('site.'.$page, ['locale' => $language]) }}" lang="{{ $language }}" hreflang="{{ $language }}" @if($language === $locale) aria-current="true" @endif>{{ $label }}</a></li>
+                <li><a href="{{ isset($portfolioEntry) ? route('site.portfolio.show', ['locale' => $language, 'portfolio' => $portfolioEntry]) : route('site.'.$page, ['locale' => $language]) }}" lang="{{ $language }}" hreflang="{{ $language }}" @if($language === $locale) aria-current="true" @endif>{{ $label }}</a></li>
             @endforeach
         </ul>
     </li>

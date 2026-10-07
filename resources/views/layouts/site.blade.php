@@ -7,7 +7,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="{{ __('site.description') }}" name="description"/>
 
-<title>{{ __('site.'.$page).' | '.config('site.name') }}</title>
+<title>{{ ($portfolioEntry->title ?? __('site.'.$page)).' | '.config('site.name') }}</title>
 
 <link href="{{ asset('assets/images/logos/konsulin-tech.png') }}" rel="shortcut icon" type="image/x-icon"/>
 
@@ -23,9 +23,9 @@
 <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet"/>
 
 <link rel="stylesheet" href="{{ asset('assets/css/site.css') }}">
-<link rel="canonical" href="{{ route('site.'.$page, ['locale' => $locale]) }}">
+<link rel="canonical" href="{{ isset($portfolioEntry) ? route('site.portfolio.show', ['locale' => $locale, 'portfolio' => $portfolioEntry]) : route('site.'.$page, ['locale' => $locale]) }}">
 @foreach (['id', 'en'] as $language)
-<link rel="alternate" hreflang="{{ $language }}" href="{{ route('site.'.$page, ['locale' => $language]) }}">
+<link rel="alternate" hreflang="{{ $language }}" href="{{ isset($portfolioEntry) ? route('site.portfolio.show', ['locale' => $language, 'portfolio' => $portfolioEntry]) : route('site.'.$page, ['locale' => $language]) }}">
 @endforeach
 </head>
 <body>

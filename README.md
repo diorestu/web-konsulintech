@@ -11,7 +11,7 @@ php artisan key:generate
 php artisan serve
 ```
 
-Jika `.env` sudah ada, gunakan file tersebut tanpa menimpanya. Arahkan document root web server ke `public/`. Situs ini menggunakan aset statis dari `public/assets`, sehingga tidak memerlukan build Node/Vite. Session dan cache menggunakan file; halaman situs tidak membutuhkan database.
+Jika `.env` sudah ada, gunakan file tersebut tanpa menimpanya. Arahkan document root web server ke `public/`. Situs ini menggunakan aset statis dari `public/assets`, sehingga tidak memerlukan build Node/Vite. Session dan cache menggunakan file. Admin dan halaman Portofolio menggunakan database; SQLite tersedia sebagai konfigurasi awal. Jalankan `php artisan migrate` dan `php artisan storage:link` setelah instalasi.
 
 ## Halaman dan bahasa
 
@@ -41,7 +41,7 @@ Gunakan nomor WhatsApp dengan kode negara, contoh format `62812...`, tanpa angka
 
 Tombol mengambang membuka percakapan WhatsApp dengan pesan sesuai bahasa aktif. Jika nomor belum diisi atau tidak valid, tombol mengarah ke formulir kontak. Formulir Beranda dan Kontak Kami memvalidasi input, lalu membuka WhatsApp dengan pesan yang telah disusun; pengunjung tetap harus mengirim pesan di WhatsApp. Formulir tidak mengirim email atau menyimpan data kontak. Jika nomor belum tersedia, formulir menampilkan pesan yang menjelaskan keadaan tersebut. Input dilindungi CSRF dan pembatasan frekuensi permintaan.
 
-Komponen email pada footer membawa pengunjung ke halaman kontak dan mengisi kolom email. Tidak ada fitur langganan newsletter. Pencarian bawaan header mencari teks proyek pada halaman portofolio.
+Komponen email pada footer membawa pengunjung ke halaman kontak dan mengisi kolom email. Tidak ada fitur langganan newsletter. Pencarian bawaan header mencari judul dan kategori portofolio yang sudah dipublikasikan.
 
 ## Mengubah konten
 
@@ -66,3 +66,23 @@ Enam aset yang dirujuk HTML sumber tidak tersedia: `images/bg/pheader-bg.webp`, 
 Konsep konten mencakup IT Consulting & Software House dan Legal & Business Consulting. Produk utama adalah HUMI HRIS (https://humi.my.id), Paperwork (https://paperwork.biz.id), dan Mava POS (https://mavapos.id). Section produk digunakan bersama di Beranda dan Layanan, dengan tautan langsung ke setiap website. Layanan accounting, finance, dan tax tidak ditawarkan pada konten situs.
 
 Gambar utama Beranda memakai empat visual ilustratif yang dibuat melalui imagegen bawaan. Prompt, lokasi aset, dan penggunaan didokumentasikan pada `docs/landing-images.md`. Visual ini bukan foto staf sebenarnya atau screenshot produk.
+
+## Admin portofolio
+
+Jalankan migrasi dan buat akun admin melalui terminal:
+
+```sh
+php artisan migrate
+php artisan storage:link
+php artisan admin:create
+```
+
+Perintah `admin:create` meminta nama, email, dan kata sandi secara interaktif; kata sandi tidak ditampilkan. Minimal 12 karakter, tanpa akun/kata sandi default dan tanpa registrasi publik. Akun biasa tidak memiliki akses admin.
+
+Buka `/admin/login` untuk masuk, kemudian kelola data pada `/admin/portfolios`. Enam field: thumbnail (JPG/PNG/WebP, maksimal 2 MB), title, category, content berupa teks, status (Draft/Published), dan publish_at. Isi yang sama digunakan pada kedua bahasa publik.
+
+Waktu publikasi menggunakan `APP_TIMEZONE=Asia/Makassar` (WITA). Published dengan tanggal kosong memakai waktu sekarang. Tanggal mendatang tampil setelah jadwalnya tercapai, tanpa cron. Draft selalu disembunyikan. Halaman `/id/portfolio` dan `/en/portfolio` memakai data yang dipublikasikan, dengan detail per entri dan pagination. Jika belum ada entri, halaman menampilkan keadaan kosong.
+
+Hapus pada admin memakai soft delete: record dan thumbnail tetap disimpan untuk pemulihan, namun tidak muncul di daftar maupun website. Pemulihan dapat dilakukan oleh pengelola database dengan model `Portfolio::withTrashed()->find($id)->restore()`. Tidak ada penghapusan otomatis file thumbnail lama.
+
+Untuk deployment, database harus sudah dikonfigurasi dan direktori `storage/` serta `bootstrap/cache/` harus dapat ditulis. Beranda masih menampilkan ilustrasi solusi template; halaman Portofolio membaca data admin.

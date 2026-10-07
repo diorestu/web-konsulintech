@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'portfolio_empty' => 'Portofolio akan tersedia setelah dipublikasikan.',
     'back_to_top' => 'Kembali ke atas',
     'loading' => 'Memuat...',
     'developing_personalize_our_customer_journeys_to_increase_satisfaction' => 'Konsulin Tech membantu Anda mengembangkan sistem digital serta menata kebutuhan legal dan bisnis. Kenali juga HUMI HRIS, Paperwork, dan Mava POS.',
