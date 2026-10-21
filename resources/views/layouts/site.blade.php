@@ -3,6 +3,7 @@
 <head>
 
 <meta charset="utf-8"/>
+<meta name="facebook-domain-verification" content="abb7ilmja2pjaakqkpw6fyib85exdh" />
 <meta content="ie=edge" http-equiv="x-ua-compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="{{ __('site.description') }}" name="description"/>
@@ -27,8 +28,29 @@
 @foreach (['id', 'en'] as $language)
 <link rel="alternate" hreflang="{{ $language }}" href="{{ isset($portfolioEntry) ? route('site.portfolio.show', ['locale' => $language, 'portfolio' => $portfolioEntry]) : route('site.'.$page, ['locale' => $language]) }}">
 @endforeach
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1743406136755083');
+fbq('init', '1798919638096503');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=1743406136755083&ev=PageView&noscript=1"
+/></noscript>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=1798919638096503&ev=PageView&noscript=1"
+/></noscript>
 @include('partials.header')
 <div id="smooth-wrapper">
     <div id="smooth-content">
