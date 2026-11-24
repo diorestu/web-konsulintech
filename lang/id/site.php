@@ -16,7 +16,7 @@ return [
     'let_s_talk' => 'Mari Berdiskusi',
     'search_here' => 'Cari di sini...',
     'type_words_and_hit_enter' => 'Cari proyek lalu tekan Enter',
-    'developing_personalze_our_customer_journeys_to_increase_satisfaction' => 'Mitra untuk website, software, aplikasi mobile, serta konsultasi legal dan bisnis. Pengembang HUMI HRIS, Paperwork, dan Mava POS.',
+    'developing_personalze_our_customer_journeys_to_increase_satisfaction' => 'Mitra untuk website, software, aplikasi mobile, serta konsultasi legal dan bisnis.',
     'services' => 'Layanan',
     'customer_experience' => 'Pengalaman Pelanggan',
     'training_programs' => 'Program Pelatihan',

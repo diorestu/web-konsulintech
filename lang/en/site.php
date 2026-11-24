@@ -16,7 +16,7 @@ return [
     'let_s_talk' => 'Let’s Talk',
     'search_here' => 'Search here...',
     'type_words_and_hit_enter' => 'Type Words and Hit Enter',
-    'developing_personalze_our_customer_journeys_to_increase_satisfaction' => 'Your partner for websites, software, mobile apps, and legal and business consulting. Creator of HUMI HRIS, Paperwork, and Mava POS.',
+    'developing_personalze_our_customer_journeys_to_increase_satisfaction' => 'Your partner for websites, software, mobile apps, and legal and business consulting.',
     'services' => 'Services',
     'customer_experience' => 'Customer Experience',
     'training_programs' => 'Training Programs',
